@@ -18,6 +18,7 @@
 
 #include "proto.h"
 #include "net.h"
+#include "ot_config.h"
 
 LOG_MODULE_REGISTER(knot, LOG_LEVEL_DBG);
 K_PIPE_DEFINE(p2n_pipe, 128, 4);
@@ -27,6 +28,7 @@ static struct k_sem quit_lock;
 void main(void)
 {
 	LOG_DBG("*** Welcome to KNoT! %s\n", CONFIG_ARCH);
+	ot_config_update();
 
 	k_sem_init(&quit_lock, 0, UINT_MAX);
 
