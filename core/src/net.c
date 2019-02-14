@@ -19,6 +19,7 @@
 
 #include "net.h"
 #include "tcp6.h"
+#include "ot_config.h"
 
 LOG_MODULE_DECLARE(knot, LOG_LEVEL_DBG);
 
@@ -125,6 +126,19 @@ int net_start(struct k_pipe *p2n, struct k_pipe *n2p)
 	proto2net = p2n;
 	net2proto = n2p;
 	connected = false;
+	// int rc;
+
+	// /* Load OṕenThread credentials from settings */
+	// rc = ot_config_load();
+	// if (rc) {
+	// 	LOG_ERR("Failed to load OT credentials. Aborting net thread");
+	// 	return -1;
+	// }
+	// rc = ot_config_set();
+	// if (rc) {
+	// 	LOG_ERR("Failed to set OT credentials. Aborting net thread");
+	// 	return -1;
+	// }
 
 	k_thread_create(&rx_thread_data, rx_stack,
 			K_THREAD_STACK_SIZEOF(rx_stack),
